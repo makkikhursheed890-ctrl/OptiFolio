@@ -896,3 +896,187 @@ ul {
         border-radius: 36px 0 12px 12px;
     }
 }
+/* ======== GETTING TO KNOW ME SECTION ======== */
+/* Is file ko style.css ke end mai paste kar sakte hain. Sab kuch .know ke andar scoped ha. */
+
+.know,
+.know *,
+.know *::before,
+.know *::after {
+    box-sizing: border-box;
+}
+
+.know {
+    --k-ink: #2e2e2e;
+    --k-muted: #555;
+    --k-pad-x: clamp(20px, 10.4vw, 150px);
+
+    position: relative;
+    overflow: hidden;
+    color: var(--k-ink);
+    font-family: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:
+        radial-gradient(38% 55% at 28% 78%, rgba(226, 249, 208, .75) 0%, rgba(226, 249, 208, 0) 72%),
+        radial-gradient(38% 50% at 100% 8%, rgba(222, 236, 236, .8) 0%, rgba(222, 236, 236, 0) 72%),
+        radial-gradient(30% 40% at 0% 100%, rgba(226, 249, 208, .6) 0%, rgba(226, 249, 208, 0) 72%),
+        #fcfdfc;
+}
+
+.know__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+    align-items: center;
+    gap: clamp(32px, 6vw, 86px);
+    max-width: 1440px;
+    margin-inline: auto;
+    padding: clamp(56px, 8.3vw, 120px) var(--k-pad-x);
+}
+
+/* grid children ko content ke bahar nikalne se rokta ha (mobile overflow fix) */
+.know__content,
+.know__media {
+    min-width: 0;
+}
+
+/* ---------- TEXT ---------- */
+.know__title {
+    font-size: clamp(1.75rem, 3.6vw, 3rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    text-transform: uppercase;
+    color: var(--k-ink);
+}
+
+.know__text {
+    margin-top: clamp(12px, 1.4vw, 18px);
+    max-width: 520px;
+    font-size: clamp(.95rem, 1.15vw, 1rem);
+    line-height: 1.5;
+    color: var(--k-muted);
+}
+
+.know__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    margin-top: clamp(28px, 3.4vw, 48px);
+    padding: 0 24px;
+    border-radius: 14px;
+    background: #26292e;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.know__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(38, 41, 46, .25);
+}
+
+.know__btn:focus-visible {
+    outline: 2px solid #0b5a4c;
+    outline-offset: 3px;
+}
+
+/* ---------- IMAGE ---------- */
+.know__media {
+    margin: 0;
+}
+
+.know__media img {
+    display: block;
+    width: 100%;
+    height: auto; /* HTML ke height="327" attribute ko override karta ha, warna mobile par image stretch/kat jati ha */
+    aspect-ratio: 520 / 327;
+    object-fit: cover;
+    border-radius: 56px 0 56px 14px;
+    background: #cfd3d0;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1024px) {
+    .know__inner {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+    }
+
+    .know__media img {
+        border-radius: 44px 0 44px 12px;
+    }
+}
+
+@media (max-width: 860px) {
+    .know__inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .know__text {
+        max-width: 600px;
+    }
+
+    .know__media {
+        max-width: 640px;
+    }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 600px) {
+    .know {
+        --k-pad-x: 20px;
+    }
+
+    .know__inner {
+        gap: 28px;
+        padding-block: 44px;
+    }
+
+    .know__title {
+        font-size: 1.75rem;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+
+    .know__text {
+        font-size: .95rem;
+    }
+
+    .know__btn {
+        width: 100%;
+        height: 50px;
+        margin-top: 24px;
+    }
+
+    .know__media {
+        max-width: none;
+    }
+
+    /* mobile par image thori lambi taake banda poora nazar aaye */
+    .know__media img {
+        aspect-ratio: 4 / 3;
+        border-radius: 36px 0 36px 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .know__inner {
+        padding-block: 36px;
+    }
+
+    .know__title {
+        font-size: 1.5rem;
+    }
+
+    .know__media img {
+        border-radius: 28px 0 28px 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .know__btn {
+        transition: none;
+    }
+}
