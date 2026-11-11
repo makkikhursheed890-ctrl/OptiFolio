@@ -117,3 +117,22 @@ const nav = document.getElementById('nav');
     build();
     requestAnimationFrame(tick);
   })();
+
+
+  /* play dabane par image ki jagah video chal jaye */
+  (() => {
+    const media = document.getElementById('pod-media');
+    const btn = media.querySelector('.pod__play');
+ 
+    btn.addEventListener('click', () => {
+      const src = btn.dataset.video;
+      if (!src || src.includes('VIDEO_ID')) return;   // jab tak asli link na ho kuch nahi hoga
+ 
+      const frame = document.createElement('iframe');
+      frame.src = src;
+      frame.title = 'Podcast video';
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      frame.allowFullscreen = true;
+      media.replaceChildren(frame);
+    });
+  })();
