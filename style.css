@@ -1,0 +1,543 @@
+:root {
+    --bg-dark: #03413a;
+    --mint: #7fd8c5;
+    --mint-soft: #e8f8ef;
+    --text: #ffffff;
+    --text-muted: rgba(255, 255, 255, .78);
+    --ink: #0d1f1b;
+    --pad-x: clamp(20px, 10.4vw, 150px);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--mint);
+    outline-offset: 3px;
+}
+
+/* ---------- HERO WRAPPER ---------- */
+.hero {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(60% 55% at 38% 58%, rgba(76, 150, 90, .95) 0%, rgba(76, 150, 90, 0) 70%),
+        radial-gradient(40% 45% at 100% 0%, rgba(50, 135, 125, .95) 0%, rgba(50, 135, 125, 0) 70%),
+        radial-gradient(35% 45% at 0% 100%, rgba(42, 90, 120, .95) 0%, rgba(42, 90, 120, 0) 70%),
+        var(--bg-dark);
+}
+
+.hero__inner {
+    max-width: 1440px;
+    margin-inline: auto;
+}
+
+/* ---------- NAVBAR ---------- */
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+    padding: 20px 0;
+}
+
+.nav__logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav__links {
+    display: flex;
+    gap: clamp(20px, 2.3vw, 33px);
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+.nav__links a {
+    transition: color .2s;
+}
+
+.nav__links a:hover,
+.nav__links a[aria-current="page"] {
+    color: #fff;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    border: 0;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s, background-color .2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn--white {
+    background: #fff;
+    color: var(--ink);
+    height: 48px;
+    padding: 0 24px;
+    border-radius: 16px;
+}
+
+.btn--mint {
+    background: var(--mint);
+    color: var(--ink);
+    height: 52px;
+    padding: 0 24px;
+    border-radius: 12px;
+}
+
+.btn--mint:hover {
+    box-shadow: 0 10px 24px rgba(127, 216, 197, .3);
+}
+
+.nav__toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    cursor: pointer;
+}
+
+.nav__toggle span,
+.nav__toggle span::before,
+.nav__toggle span::after {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    margin: auto;
+    position: relative;
+    transition: transform .25s, background-color .25s;
+}
+
+.nav__toggle span::before,
+.nav__toggle span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+}
+
+.nav__toggle span::before {
+    top: -6px;
+}
+
+.nav__toggle span::after {
+    top: 6px;
+}
+
+.nav.is-open .nav__toggle span {
+    background: transparent;
+}
+
+.nav.is-open .nav__toggle span::before {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.nav.is-open .nav__toggle span::after {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ---------- HERO CONTENT ---------- */
+.hero__main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+    align-items: center;
+    gap: 40px;
+    padding-top: clamp(40px, 6vw, 68px);
+}
+
+.hero__title {
+    font-size: clamp(2.4rem, 5.55vw, 5rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -.01em;
+    text-transform: uppercase;
+    max-width: 14ch;
+}
+
+.hero__text {
+    margin-top: 12px;
+    max-width: 480px;
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    color: var(--text-muted);
+}
+
+.hero__cta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 28px 48px;
+    margin-top: 48px;
+}
+
+.customers {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.customers__avatars {
+    display: flex;
+}
+
+.customers__avatars img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    background: #cfd8d5;
+}
+
+.customers__avatars img+img {
+    margin-left: -14px;
+}
+
+.customers__count {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.customers__label {
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
+/* ---------- PHOTO ---------- */
+.hero__media {
+    position: relative;
+    justify-self: end;
+    width: 100%;
+    max-width: 406px;
+}
+
+.hero__photo {
+    aspect-ratio: 406 / 546;
+    border-top-left-radius: 68px;
+    border-bottom-right-radius: 68px;
+    border-bottom-left-radius: 68px;
+    background: #3b6b59;
+    overflow: hidden;
+}
+
+.hero__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---------- CHIPS (floating animation) ---------- */
+.chip {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+    background: var(--mint-soft);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.2;
+    white-space: nowrap;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+.chip__icon {
+    font-size: 15px;
+    line-height: 1;
+}
+
+.chip--hello {
+    top: 14%;
+    right: -17%;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 8px;
+    /* pehle pop-in, phir lagatar upar-neechay float */
+    animation:
+        chip-in .6s ease-out .2s both,
+        chip-float 4s ease-in-out .8s infinite;
+}
+
+.chip--role {
+    top: 48%;
+    left: -40%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 20px;
+    animation:
+        chip-in .6s ease-out .5s both,
+        chip-float 5s ease-in-out 1.1s infinite;
+}
+
+@keyframes chip-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes chip-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ---------- LOGOS (auto-slide + swipe) ---------- */
+.brands {
+    margin-top: clamp(40px, 5vw, 70px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    cursor: grab;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+
+.brands::-webkit-scrollbar {
+    display: none;
+}
+
+.brands.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+}
+
+.brands__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+
+.brands__track li {
+    flex: none;
+    display: flex;
+    align-items: center;
+    margin-right: clamp(44px, 6vw, 88px);
+}
+
+.brands img {
+    height: 40px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    /* logo kisi bhi color mai ho to white ban jayega – color rakhna ho to ye line hata dein */
+    filter: brightness(0) invert(1);
+    opacity: .85;
+    transition: opacity .2s;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.brands__track li:hover img {
+    opacity: 1;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1100px) {
+    .chip--role {
+        left: -14%;
+    }
+
+    .chip--hello {
+        right: -4%;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav__toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        order: 3;
+    }
+
+    .nav .btn--white {
+        margin-left: auto;
+        height: 44px;
+    }
+
+    .nav__links {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 0;
+        right: 0;
+        z-index: 20;
+        flex-direction: column;
+        gap: 4px;
+        padding: 12px;
+        background: rgba(3, 40, 35, .96);
+        backdrop-filter: blur(10px);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, .1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity .2s, transform .2s, visibility .2s;
+    }
+
+    .nav__links a {
+        display: block;
+        padding: 12px 14px;
+        border-radius: 10px;
+    }
+
+    .nav__links a:hover {
+        background: rgba(255, 255, 255, .08);
+    }
+
+    .nav.is-open .nav__links {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+
+    .hero__main {
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+
+    .hero__title {
+        max-width: 16ch;
+    }
+
+    .hero__media {
+        justify-self: center;
+        max-width: 380px;
+    }
+
+    .chip--role {
+        left: -8%;
+    }
+
+    .chip--hello {
+        right: -6%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero__inner {
+        padding: 16px 20px;
+    }
+
+    .nav {
+        padding: 10px 0;
+    }
+
+    .hero__cta {
+        gap: 24px;
+        margin-top: 32px;
+    }
+
+    .btn--mint {
+        height: 50px;
+    }
+
+    .customers__avatars img {
+        width: 46px;
+        height: 46px;
+    }
+
+    .customers__count {
+        font-size: 22px;
+    }
+
+    .hero__photo {
+        border-top-left-radius: 44px;
+        border-bottom-right-radius: 44px;
+        border-bottom-left-radius: 44px;
+    }
+
+    .chip {
+        font-size: 13px;
+        padding: 11px 13px;
+    }
+
+    .chip--hello {
+        right: -15%;
+    }
+
+    .chip--role {
+        left: -37%;
+    }
+
+    .brands img {
+        height: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav__logo {
+        max-width: 100px;
+        height: auto;
+    }
+
+    .chip--hello,
+    .chip--role {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+
+    .chip {
+        animation: none;
+    }
+}
