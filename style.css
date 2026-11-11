@@ -1309,3 +1309,319 @@ ul {
         transition: none;
     }
 }
+
+
+/* ======== FEATURED EPISODES SECTION ======== */
+/* Is file ko style.css ke end mai paste kar sakte hain. Sab kuch .ep ke andar scoped ha. */
+
+.ep,
+.ep *,
+.ep *::before,
+.ep *::after {
+    box-sizing: border-box;
+}
+
+.ep {
+    --e-ink: #111;
+    --e-muted: #555;
+    --e-green: #1f6b4a;
+    --e-gap: 24px;
+    --e-pad-x: clamp(20px, 10.4vw, 150px);
+
+    position: relative;
+    overflow: hidden;
+    color: var(--e-ink);
+    font-family: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:
+        radial-gradient(34% 40% at 0% 14%, rgba(200, 236, 188, .7) 0%, rgba(200, 236, 188, 0) 72%),
+        radial-gradient(40% 40% at 100% 100%, rgba(190, 238, 228, .7) 0%, rgba(190, 238, 228, 0) 72%),
+        #f6f6f6;
+}
+
+.ep__inner {
+    max-width: 1440px;
+    margin-inline: auto;
+    padding: clamp(56px, 8.3vw, 120px) var(--e-pad-x);
+}
+
+/* ---------- HEAD ---------- */
+.ep__head {
+    text-align: center;
+}
+
+.ep__title {
+    font-family: "Plus Jakarta Sans", "Outfit", system-ui, sans-serif;
+    font-size: clamp(1.75rem, 3.6vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    color: #2e2e2e;
+}
+
+.ep__text {
+    max-width: 600px;
+    margin: clamp(10px, 1.2vw, 16px) auto 0;
+    font-size: clamp(.9rem, 1.05vw, .95rem);
+    line-height: 1.55;
+    color: var(--e-muted);
+}
+
+/* ---------- SLIDER ---------- */
+.ep__slider {
+    margin-top: clamp(32px, 4.4vw, 64px);
+}
+
+.ep__track {
+    display: flex;
+    gap: var(--e-gap);
+    margin: 0;
+    padding: 0 0 6px;
+    list-style: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ep__track::-webkit-scrollbar {
+    display: none;
+}
+
+.ep__track:focus-visible {
+    outline: 2px solid var(--e-green);
+    outline-offset: 6px;
+    border-radius: 8px;
+}
+
+/* mouse drag ke dauran snap band, taake smooth drag ho */
+.ep__track.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+}
+
+/* ---------- CARD ---------- */
+.ep-card {
+    flex: 0 0 calc((100% - 2 * var(--e-gap)) / 3);   /* desktop: 3 cards */
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    scroll-snap-align: start;
+}
+
+.ep-card__img {
+    display: block;
+    overflow: hidden;
+    border-radius: 0 0 48px 48px;
+    background: #d9ddd9;
+}
+
+.ep-card__img img {
+    display: block;
+    width: 100%;
+    height: auto;                 /* HTML ke height attribute ko override karta ha */
+    aspect-ratio: 364 / 240;
+    object-fit: cover;
+    -webkit-user-drag: none;
+    user-select: none;
+    transition: transform .5s ease;
+}
+
+.ep-card:hover .ep-card__img img {
+    transform: scale(1.05);
+}
+
+.ep-card__title {
+    margin-top: clamp(18px, 2vw, 28px);
+    font-family: "Plus Jakarta Sans", "Outfit", system-ui, sans-serif;
+    font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1.28;
+    letter-spacing: -.01em;
+    color: var(--e-ink);
+}
+
+.ep-card__text {
+    margin-top: 12px;
+    font-size: clamp(.9rem, 1.05vw, .95rem);
+    line-height: 1.55;
+    color: var(--e-muted);
+}
+
+.ep-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    margin-top: auto;
+    padding-top: 18px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--e-ink);
+    text-decoration: none;
+}
+
+.ep-card__link svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform .2s;
+}
+
+.ep-card__link:hover svg {
+    transform: translateX(4px);
+}
+
+.ep-card__link:focus-visible {
+    outline: 2px solid var(--e-green);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* ---------- DOTS ---------- */
+.ep__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: clamp(24px, 2.8vw, 36px);
+}
+
+.ep__dots[hidden] {
+    display: none;
+}
+
+.ep__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(17, 17, 17, .2);
+    cursor: pointer;
+    transition: width .3s, background-color .3s;
+}
+
+.ep__dot.is-active {
+    width: 26px;
+    background: var(--e-green);
+}
+
+.ep__dot:focus-visible {
+    outline: 2px solid var(--e-green);
+    outline-offset: 3px;
+}
+
+/* ---------- BUTTON ---------- */
+.ep__more {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(28px, 3vw, 40px);
+}
+
+.ep__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 0 26px;
+    border-radius: 12px;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.ep__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .18);
+}
+
+.ep__btn:focus-visible {
+    outline: 2px solid var(--e-green);
+    outline-offset: 3px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+/* tablet: 2 cards */
+@media (max-width: 1024px) {
+    .ep {
+        --e-gap: 20px;
+    }
+
+    .ep-card {
+        flex-basis: calc((100% - var(--e-gap)) / 2);
+    }
+
+    .ep-card__img {
+        border-radius: 0 0 40px 40px;
+    }
+}
+
+/* mobile: 1 card, agle card ki jhalak (peek) taake swipe ka pata chale */
+@media (max-width: 640px) {
+    .ep {
+        --e-gap: 16px;
+        --e-pad-x: 20px;
+    }
+
+    .ep__inner {
+        padding-block: 48px;
+    }
+
+    .ep__title {
+        font-size: 1.75rem;
+        overflow-wrap: anywhere;
+    }
+
+    /* slider screen ke kinare tak jaye, taake agla card aadha nazar aaye */
+    .ep__slider {
+        margin-inline: -20px;
+    }
+
+    .ep__track {
+        padding-inline: 20px;
+        scroll-padding-inline: 20px;
+    }
+
+    .ep-card {
+        flex-basis: 86%;
+    }
+
+    .ep-card__img {
+        border-radius: 0 0 36px 36px;
+    }
+
+    .ep__btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 380px) {
+    .ep__title {
+        font-size: 1.5rem;
+    }
+
+    .ep-card {
+        flex-basis: 90%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .ep-card__img img,
+    .ep-card__link svg,
+    .ep__dot,
+    .ep__btn {
+        transition: none;
+    }
+}
